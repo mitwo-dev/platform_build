@@ -1527,8 +1527,13 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 	   $(if $(OEM_OTA_CONFIG), -o $(OEM_OTA_CONFIG)) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
-.PHONY: otapackage
+BUILD_PACKAGE := $(PRODUCT_OUT)/Qcom-$(TARGET_PRODUCT)-$(pwgen -cs 10 1)-4.4.4.zip
+.PHONY: otapackage bacon
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
+bacon: otapackage
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(BUILD_PACKAGE)
+	$(hide) $(MD5SUM) $(BUILD_PACKAGE) > $(BUILD_PACKAGE).md5sum
+	@echo -e "Package complete: $(BUILD_PACKAGE)"
 
 endif    # recovery_fstab is defined
 endif    # TARGET_NO_KERNEL != true
