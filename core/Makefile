@@ -1300,8 +1300,14 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 	   -k $(KEY_CERT_PAIR) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
-.PHONY: otapackage
+AOSP_TARGET_PACKAGE := $(PRODUCT_OUT)/AOSP-$(TARGET_PRODUCT)-$(pwgen -cs 10 1)-4.4.zip
+
+.PHONY: otapackage bacon
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
+bacon: otapackage
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(AOSP_TARGET_PACKAGE)
+	$(hide) $(MD5SUM) $(CUSTOM_TARGET_PACKAGE) > $(AOSP_TARGET_PACKAGE).md5sum
+	@echo -e "Package complete: $(AOSP_TARGET_PACKAGE)"
 
 # -----------------------------------------------------------------
 # The update package
