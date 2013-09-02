@@ -41,6 +41,12 @@ PRODUCT_PACKAGES += \
     PhotoTable \
     FileExplorer
 
+# Extra tools
+PRODUCT_PACKAGES += \
+    e2fsck \
+    mke2fs \
+    tune2fs
+
 # Additional settings used in all AOSP builds
 PRODUCT_PROPERTY_OVERRIDES := \
     ro.com.android.dateformat=MM-dd-yyyy \
