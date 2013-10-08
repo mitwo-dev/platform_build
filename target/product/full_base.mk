@@ -50,7 +50,8 @@ PRODUCT_PACKAGES += \
     fsck.exfat \
     mkfs.exfat \
     ntfsfix \
-    ntfs-3g
+    ntfs-3g \
+	setup_fs
 
 # Additional settings used in all AOSP builds
 PRODUCT_PROPERTY_OVERRIDES := \
