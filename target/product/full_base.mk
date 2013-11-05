@@ -40,6 +40,19 @@ PRODUCT_PACKAGES += \
     VisualizationWallpapers \
     PhotoTable
 
+# Extra tools
+PRODUCT_PACKAGES += \
+    e2fsck \
+    mke2fs \
+    tune2fs \
+    mount.exfat \
+    fsck.exfat \
+    mkfs.exfat \
+    ntfsfix \
+    ntfs-3g \
+	setup_fs \
+	mkntfs
+
 # Additional settings used in all AOSP builds
 PRODUCT_PROPERTY_OVERRIDES := \
     ro.com.android.dateformat=MM-dd-yyyy \
