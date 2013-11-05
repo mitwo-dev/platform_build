@@ -466,6 +466,8 @@ function breakfast()
 {
     target=$1
     AOSP_DEVICES_ONLY="true"
+    BUILD_RANDOM=$(pwgen -cs 10 1)
+    BUILD_DATE=$(date -u +%Y%m%d)
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
 
@@ -482,6 +484,8 @@ function breakfast()
             lunch $target-userdebug
         fi
     fi
+    export BUILD_RANDOM
+    export BUILD_DATE
     return $?
 }
 
@@ -1339,7 +1343,7 @@ function mka() {
             make -j `sysctl hw.ncpu|cut -d" " -f2` "$@"
             ;;
         *)
-            schedtool -B -n 1 -e ionice -n 1 make -j `cat /proc/cpuinfo | grep "^processor" | wc -l` "$@"
+            schedtool -B -n 1 -e ionice -n 1 make -j$(cat /proc/cpuinfo | grep "^processor" | wc -l) "$@"
             ;;
     esac
 }
