@@ -82,6 +82,7 @@ $(info   HOST_OS=$(HOST_OS))
 $(info   HOST_OS_EXTRA=$(HOST_OS_EXTRA))
 $(info   HOST_BUILD_TYPE=$(HOST_BUILD_TYPE))
 $(info   BUILD_ID=$(BUILD_ID))
+$(info   BUILD_NUMBER=$(BUILD_NUMBER))
 $(info   OUT_DIR=$(OUT_DIR))
 $(info ============================================)
 endif

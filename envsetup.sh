@@ -478,6 +478,32 @@ function print_lunch_menu()
     echo
 }
 
+function get_date_string()
+{
+    unset g_date
+    local var
+    local year
+    local month
+    local day
+
+    var=`date -d "$1" +%y`
+    year=`expr substr $var 2 1`
+
+    var=`date -d "$1" +%m`
+    month=$var
+    if [ `expr substr $var 1 1` = "0" ]; then
+        month=`expr substr $var 2 1`
+    fi
+
+    var=`date -d "$1" +%d`
+    day=$var
+    if [ `expr substr $var 1 1` = "0" ]; then
+        day=`expr substr $var 2 1`
+    fi
+
+    g_date=$year.$month.$day
+}
+
 function brunch()
 {
     breakfast $*
@@ -494,6 +520,10 @@ function breakfast()
 {
     target=$1
     AOSP_DEVICES_ONLY="true"
+    BUILD_RANDOM=$(pwgen -cs 10 1)
+    export BUILD_RANDOM
+    get_date_string now
+    export BUILD_NUMBER=$g_date
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
 
