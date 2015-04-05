@@ -1533,7 +1533,7 @@ otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(BUILD_PACKAGE)
 	$(hide) $(MD5SUM) $(BUILD_PACKAGE) > $(BUILD_PACKAGE).md5sum
-	@echo -e "Package complete: $(BUILD_PACKAGE)"
+	@echo -e ${CL_CYN}"Package Complete: $(BUILD_PACKAGE)"${CL_RST}
 
 endif    # recovery_fstab is defined
 endif    # TARGET_NO_KERNEL != true
